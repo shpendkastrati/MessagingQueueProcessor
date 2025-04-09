@@ -24,3 +24,21 @@ This .NET 8 application simulates processing messages in an Application-to-Perso
    ```bash
    git clone https://github.com/shpendkastrati/MessagingQueueProcessor.git
    cd MessagingQueueProcessor
+
+## System Dashboard
+
+The **System Dashboard** provides a simple UI for monitoring the state of the messaging processor service.
+
+### Overview
+
+- **Processed Messages**: Total number of messages successfully processed.
+- **Error Count**: Number of messages that encountered errors.
+- **Queue Depth**: Number of messages currently in the queue.
+
+### 🔗 Access
+
+Open your browser and navigate to:
+
+https://localhost:{port}/Dashboard
+
+Replace `{port}` with the port your application is running on (e.g., `7107`).
