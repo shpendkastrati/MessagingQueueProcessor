@@ -9,7 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessagingQueueProcessor.Dat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessagingQueueProcessor.Services", "MessagingQueueProcessor.Services\MessagingQueueProcessor.Services.csproj", "{FA9CCA80-1D7E-4103-A497-76ADE560FC31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessagingQueueProcessor.Common", "MessagingQueueProcessor.Common\MessagingQueueProcessor.Common.csproj", "{FBDE65EC-49F0-4742-8ACC-A18AF7E29019}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessagingQueueProcessor.Common", "MessagingQueueProcessor.Common\MessagingQueueProcessor.Common.csproj", "{FBDE65EC-49F0-4742-8ACC-A18AF7E29019}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{69D600D7-9C50-4E47-A670-845FC6D9EACF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessagingQueueProcessor.Api.Test", "MessagingQueueProcessor.Api.Test\MessagingQueueProcessor.Api.Test.csproj", "{FDBCA204-B90F-4E03-8C29-DE8B03442F46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessagingQueueProcessor.Services.Test", "MessagingQueueProcessor.Services.Test\MessagingQueueProcessor.Services.Test.csproj", "{1E77A7A6-42E1-43DE-9D90-B0E6251A33A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +39,21 @@ Global
 		{FBDE65EC-49F0-4742-8ACC-A18AF7E29019}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBDE65EC-49F0-4742-8ACC-A18AF7E29019}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBDE65EC-49F0-4742-8ACC-A18AF7E29019}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDBCA204-B90F-4E03-8C29-DE8B03442F46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDBCA204-B90F-4E03-8C29-DE8B03442F46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDBCA204-B90F-4E03-8C29-DE8B03442F46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDBCA204-B90F-4E03-8C29-DE8B03442F46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E77A7A6-42E1-43DE-9D90-B0E6251A33A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E77A7A6-42E1-43DE-9D90-B0E6251A33A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E77A7A6-42E1-43DE-9D90-B0E6251A33A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E77A7A6-42E1-43DE-9D90-B0E6251A33A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FDBCA204-B90F-4E03-8C29-DE8B03442F46} = {69D600D7-9C50-4E47-A670-845FC6D9EACF}
+		{1E77A7A6-42E1-43DE-9D90-B0E6251A33A0} = {69D600D7-9C50-4E47-A670-845FC6D9EACF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D4B4CD13-2ED2-4027-825F-AC6E8BA613A4}
