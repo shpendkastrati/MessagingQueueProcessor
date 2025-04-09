@@ -29,7 +29,7 @@ namespace MessagingQueueProcessor.Api.Controllers
         {
             var message = messageQueueService.Enqueue(model.Adapt<CreateMessageDto>());
 
-            return Accepted(new { message.Id });
+            return Accepted(new EntityCreatedResponse() { Id = message.Id.ToString() });
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace MessagingQueueProcessor.Api.Controllers
         /// <returns></returns>
         [HttpGet("messages")]
         [SwaggerOperation(Summary = "Get message statistics")]
-        [SwaggerResponse(StatusCodes.Status200OK, "Success", typeof(MessageListResponse))]
+        [SwaggerResponse(StatusCodes.Status200OK, "Success")]
         [SwaggerResponse(StatusCodes.Status204NoContent, "There are no message statistics found.")]
         public async Task<IActionResult> GetStatistics([FromServices] IMessageService messageService)
         {
