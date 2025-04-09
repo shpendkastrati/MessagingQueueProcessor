@@ -7,6 +7,8 @@ using MessagingQueueProcessor.Services.Messages.Services;
 using MessagingQueueProcessor.Services.Messages.Services.Interfaces;
 using MessagingQueueProcessor.Services.Messages.Services.Repositories;
 using MessagingQueueProcessor.Services.Messages.Services.Repositories.Interfaces;
+using MessagingQueueProcessor.Services.Metrics.Services;
+using MessagingQueueProcessor.Services.Metrics.Services.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using static MessagingQueueProcessor.Services.Common.Repositories.Interfaces.IGenericRepository;
 
@@ -23,6 +25,9 @@ namespace MessagingQueueProcessor.Services.Extensions
             services.AddScoped<IMessageService, MessageService>();
             services.AddSingleton<IMessageQueueService, MessageQueueService>();
             services.AddTransient<IExternalServiceSimulator, ExternalServiceSimulator>();
+
+            // Metrics
+            services.AddSingleton<IMetricsService, MetricsService>();
 
             return services;
         }
