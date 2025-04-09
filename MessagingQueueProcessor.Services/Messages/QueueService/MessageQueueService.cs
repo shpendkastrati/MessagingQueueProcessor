@@ -19,8 +19,10 @@ namespace MessagingQueueProcessor.Services.Messages.MessageQueueService
         {
             Check.IsNotNull(createMessageDto, nameof(CreateMessageDto));
 
-            // to do:
-            // validate model
+            // Improvements with more time
+            // TODO: Implement FluentValidation rules using "RuleFor" to ensure the DTO meets input validation criteria.
+            // TODO: Consider adding a separate service to perform business logic validation on the DTO.
+
 
             createMessageDto.Id = Guid.NewGuid();
 
