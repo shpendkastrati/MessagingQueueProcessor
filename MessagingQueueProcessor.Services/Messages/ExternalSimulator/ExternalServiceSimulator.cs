@@ -12,11 +12,11 @@ namespace MessagingQueueProcessor.Services.Messages.ExternalSimulator
 
         public async Task SendMessageAsync(Message message, CancellationToken cancellationToken)
         {
-            // To do:
+            // TODO:
             // Simulate delay between 0.5s and 1s.
             await Task.Delay(_random.Next(500, 1000), cancellationToken);
 
-            // To do:
+            // TODO:
             // Simulate a 30% chance of failure.
             if (_random.NextDouble() < 0.3)
             {
