@@ -7,7 +7,6 @@ using MessagingQueueProcessor.Services.Messages.MessageQueueService.Interfaces;
 using MessagingQueueProcessor.Services.Messages.QueueService.Dtos;
 using MessagingQueueProcessor.Services.Messages.Services.Dtos;
 using MessagingQueueProcessor.Services.Messages.Services.Interfaces;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using NSubstitute;
 
@@ -225,7 +224,5 @@ namespace MessagingQueueProcessor.Api.Test
 
             await messageServiceSub.Received(1).GetListAsync(Arg.Any<MessageFilterDto>());
         }
-
-
     }
 }

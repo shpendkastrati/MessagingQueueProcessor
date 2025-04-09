@@ -15,17 +15,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddDbContext<ApplicationDbContext>(
-    options => options.UseSqlite($"Data Source={Path.Combine(AppContext.BaseDirectory, "messages.db")}"));
-
-using (var scope = builder.Services.BuildServiceProvider().CreateScope())
-{
-    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    dbContext.Database.Migrate();
-}
-
-builder.Services.AddControllers();
-
 builder.Host.UseSerilog((hostingContext, loggerConfiguration) =>
 {
     loggerConfiguration.
@@ -34,6 +23,17 @@ builder.Host.UseSerilog((hostingContext, loggerConfiguration) =>
     WriteTo.Console();
 });
 
+builder.Services.AddControllers();
+builder.Services.AddRazorPages();
+
+builder.Services.AddDbContext<ApplicationDbContext>(
+    options => options.UseSqlite($"Data Source={Path.Combine(AppContext.BaseDirectory, "messages.db")}"));
+
+using (var scope = builder.Services.BuildServiceProvider().CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    dbContext.Database.Migrate();
+}
 
 builder.Services.AddSwaggerGen(SwaggerGen.ConfigureSwagger());
 
@@ -63,5 +63,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapRazorPages();
+app.MapDefaultControllerRoute();
 
 app.Run();

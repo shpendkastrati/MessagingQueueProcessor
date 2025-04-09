@@ -9,6 +9,7 @@ using Microsoft.Extensions.Options;
 using MessagingQueueProcessor.Services.Messages.Services.Repositories.Interfaces;
 using MessagingQueueProcessor.Services.Messages.ExternalSimulator.Interfaces;
 using MessagingQueueProcessor.Services.Messages.MessageQueueService.Interfaces;
+using MessagingQueueProcessor.Services.Metrics.Services.Interfaces;
 
 namespace MessagingQueueProcessor.Services.Messages.ProcessorService
 {
@@ -18,7 +19,8 @@ namespace MessagingQueueProcessor.Services.Messages.ProcessorService
         IServiceScopeFactory scopeFactory,
         IExternalServiceSimulator externalService,
         IConfiguration configuration,
-        IOptions<ProcessingOptions> processingOptions) : BackgroundService
+        IOptions<ProcessingOptions> processingOptions,
+        IMetricsService metricsService) : BackgroundService
     {
         private readonly ILogger<MessageProcessorService> _logger = Check.IsNotNull(logger);
         private readonly IMessageQueueService _queueService = Check.IsNotNull(queueService);
@@ -26,6 +28,7 @@ namespace MessagingQueueProcessor.Services.Messages.ProcessorService
         private readonly IExternalServiceSimulator _externalService = Check.IsNotNull(externalService);
         private readonly IConfiguration _configuration = Check.IsNotNull(configuration);
         private readonly ProcessingOptions _processingOptions = processingOptions.Value;
+        private readonly IMetricsService _metricsService = Check.IsNotNull(metricsService);
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
@@ -64,12 +67,17 @@ namespace MessagingQueueProcessor.Services.Messages.ProcessorService
                         await _externalService.SendMessageAsync(message, cancellationToken);
                         message.Status = MessageStatus.Sent;
                         processed = true;
+
+                        _metricsService.IncrementProcessed();
                     }
                     catch (Exception ex)
                     {
                         message.RetryCount++;
 
                         _logger.LogWarning(ex, $"Processing failed for message {message.Id}. Retry attempt: {message.RetryCount}");
+
+                        // Update error metrics.
+                        _metricsService.IncrementError();
 
                         if (message.RetryCount >= 3)
                         {
